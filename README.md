@@ -79,11 +79,11 @@ Now we can place the scripts to `/var/www/html/`.
 
 I used the folowing connections:
 
-GPIO26 -> Red LED -> 100Ω -> GND
-GPIO06 -> Yellow LED -> 100Ω -> GND
-GPIO05 -> Green LED -> 100Ω -> GND
-GPIO11 -> Blue LED -> 100Ω -> GND
-GPIO10 -> Button -> 3V3
+- GPIO26 -> Red LED -> 100Ω -> GND
+- GPIO06 -> Yellow LED -> 100Ω -> GND
+- GPIO05 -> Green LED -> 100Ω -> GND
+- GPIO11 -> Blue LED -> 100Ω -> GND
+- GPIO10 -> Button -> 3V3
 
 The example UI shows a little clock that rotates through the four LEDs whenever the orange arrow on the UI is clicked. Also, the big square turns dark while the hardware button is pressed.
 
