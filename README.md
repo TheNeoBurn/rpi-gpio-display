@@ -22,7 +22,7 @@ The UI is a simple HTML, JavaScript and SVG page provided by the web server and 
 
 Prepare a Raspberry Pi image (newest version, 64bit) on an SD card and boot it up.
 
-We install php (for scripting) and nginx (the web server). This would probebly also word using a lighter werp server or even php -S alone, but I know nginx a little:
+We install php (for scripting) and nginx (the web server). This would probebly also work using a lighter web server or even *php -S* alone, but I'm used to nginx:
 
 ```bash
 sudo apt install php8.2 php8.2-common php8.2-fpm nginx
