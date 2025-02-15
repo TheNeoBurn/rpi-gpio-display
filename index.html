@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>GPIO Dashboard</title>
+    <style type="text/css">
+        body { background-color: #000000; }
+        #sgv { max-width: 100vw; max-height: 100vh; }
+    </style>
+    <script type="text/javascript" src="gpio.js"></script>
+    <script type="text/javascript">
+        var pinNr = -1;
+
+        function onNextClick() {
+            pinNr++;
+            if (pinNr > 4) pinNr = 0;
+            GPIO.setValue(26, pinNr == 1);
+            GPIO.setValue( 6, pinNr == 2);
+            GPIO.setValue( 5, pinNr == 3);
+            GPIO.setValue(11, pinNr == 4);
+
+            document.getElementById('fieldRow0').style.opacity = (pinNr >= 0) ? '1.0' : '0.2';
+            document.getElementById('fieldRow1').style.opacity = (pinNr >= 1) ? '1.0' : '0.2';
+            document.getElementById('fieldRow2').style.opacity = (pinNr >= 2) ? '1.0' : '0.2';
+            document.getElementById('fieldRow3').style.opacity = (pinNr >= 3) ? '1.0' : '0.2';
+            document.getElementById('fieldRow4').style.opacity = (pinNr >= 4) ? '1.0' : '0.2';
+        }
+
+        function onGpioChange(pin, value, mode, pull) {
+            console.log('Changed pin ' + pin.toString().padStart(2, '0') + ': ' + (value ? 'ON ' : 'OFF') + '   ' + mode);
+
+            if (pin == 10) {
+                document.getElementById('fieldBtn').style.opacity = value ? '0.2' : '1.0';
+            }
+        }
+        
+        function init() {
+            GPIO.init([
+                { pin: 26, mode: GPIO.MODE_OUTPUT },
+                { pin:  6, mode: GPIO.MODE_OUTPUT },
+                { pin:  5, mode: GPIO.MODE_OUTPUT },
+                { pin: 11, mode: GPIO.MODE_OUTPUT }
+            ], onGpioChange, null);
+
+            GPIO.setValue(26, false);
+            GPIO.setValue( 6, false);
+            GPIO.setValue( 5, false);
+            GPIO.setValue(11, false);
+
+            document.getElementById('btnNext').setAttribute("onclick", "onNextClick();");
+            onNextClick();
+        }
+    </script>
+</head>
+<body onload="init();">
+<svg
+   width="1280"
+   height="720"
+   viewBox="0 0 338.66667 190.5"
+   version="1.1"
+   id="gpio"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2" />
+  <g
+     id="layer1">
+    <path
+       style="fill:#666666;stroke:none;stroke-width:0.620138"
+       d="M 39.644796,179.55649 H 12.927537 l 14.45677,-35.9611 h 30.929415 z"
+       id="fieldRow0" />
+    <path
+       style="fill:#ff0000;stroke:none;stroke-width:0.620138"
+       d="M 29.78223,138.88052 H 61.32717 L 82.84178,109.40739 H 46.191706 Z"
+       id="fieldRow1" />
+    <path
+       style="fill:#ffff00;stroke:none;stroke-width:0.620138"
+       d="m 49.808551,103.63955 h 38.08326 L 110.47777,81.88409 H 65.396317 Z"
+       id="fieldRow2" />
+    <path
+       style="fill:#00ff00;stroke:none;stroke-width:0.620138"
+       d="M 69.158367,77.288536 H 115.68001 L 146.71907,57.829258 H 86.899326 Z"
+       id="fieldRow3" />
+    <path
+       style="fill:#0000ff;stroke:none;stroke-width:0.620138"
+       d="m 90.263703,54.695824 h 63.205207 l 24.16098,-8.210071 23.47842,-3.530716 V 5.1959865 L 177.44013,7.9436261 153.39816,14.620252 130.90777,24.6126 107.12988,40.245423 Z"
+       id="fieldRow4" />
+    <rect
+       style="fill:#ffffff;stroke:none;stroke-width:0.264583"
+       id="fieldBtn"
+       width="61.841625"
+       height="56.738708"
+       x="136.49945"
+       y="106.01295" />
+    <path
+       style="fill:#ff6600;stroke:none;stroke-width:0.264583"
+       d="m 228.59348,65.510549 v 58.236011 h 46.04259 v 46.68157 L 321.1536,89.857414 277.05198,13.471143 v 51.541775 z"
+       id="btnNext" />
+  </g>
+</svg>
+</body>
+</html>
