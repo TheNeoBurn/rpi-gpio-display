@@ -73,3 +73,45 @@ Now we can place the scripts to `/var/www/html/`.
 ## Prepare the browser
 
 > TODO...
+
+
+## Example
+
+I used the folowing connections:
+
+GPIO26 -> Red LED -> 100Ω -> GND
+GPIO06 -> Yellow LED -> 100Ω -> GND
+GPIO05 -> Green LED -> 100Ω -> GND
+GPIO11 -> Blue LED -> 100Ω -> GND
+GPIO10 -> Button -> 3V3
+
+The example UI shows a little clock that rotates through the four LEDs whenever the orange arrow on the UI is clicked. Also, the big square turns dark while the hardware button is pressed.
+
+This is the software setup in the index.html:
+
+```js
+GPIO.init([
+    { pin: 26, mode: GPIO.MODE_OUTPUT },
+    { pin:  6, mode: GPIO.MODE_OUTPUT },
+    { pin:  5, mode: GPIO.MODE_OUTPUT },
+    { pin: 11, mode: GPIO.MODE_OUTPUT },
+    { pin: 10, mode: GPIO.MODE_INPUT_PULLDOWN }
+], onGpioChange, null);
+```
+
+This sets the pins 26, 6, 5 and 11 to output mode and the pin 10 to input mode with the internal pull-down resistor enabled to keep it at 0V when the button is not pressed. Passing the `onGpioChange` function as the second parameter, makes the background thread call it whenever a pin value change is detected. The third parameter would pass all pin states on every update to this function but we down't need that here.
+
+```js
+document.getElementById('btnNext').setAttribute("onclick", "onNextClick();");
+onNextClick();
+```
+
+This hooks the click event of the orange error so it calls the `onNextClick` function which implements the LED clock logic. Calling the function now sets the LED outputs to their start states.
+
+This is what happens when the orange arrow is clicked:
+
+![LED clock animation](img/pinNr.gif)
+
+This is what happens when the hardware button is pressed:
+
+![Button state animation](img/btn10.gif)
