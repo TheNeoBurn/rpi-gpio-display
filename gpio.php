@@ -76,7 +76,7 @@ switch ($cmd) {
                 $opts = 'ip pu';
                 break;
             case 'input_pulldown':
-                $opts = 'ip pn';
+                $opts = 'ip pd';
                 break;
             case 'output':
                 $opts = 'op pn';

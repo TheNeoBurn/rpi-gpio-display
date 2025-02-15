@@ -39,13 +39,9 @@
                 { pin: 26, mode: GPIO.MODE_OUTPUT },
                 { pin:  6, mode: GPIO.MODE_OUTPUT },
                 { pin:  5, mode: GPIO.MODE_OUTPUT },
-                { pin: 11, mode: GPIO.MODE_OUTPUT }
+                { pin: 11, mode: GPIO.MODE_OUTPUT },
+                { pin: 10, mode: GPIO.MODE_INPUT_PULLDOWN }
             ], onGpioChange, null);
-
-            GPIO.setValue(26, false);
-            GPIO.setValue( 6, false);
-            GPIO.setValue( 5, false);
-            GPIO.setValue(11, false);
 
             document.getElementById('btnNext').setAttribute("onclick", "onNextClick();");
             onNextClick();
