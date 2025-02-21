@@ -1,5 +1,5 @@
 <?php
-$REX_PINCTRL_GET = '/^\s*(?<pin>[0-9]{1,2}):\s*(?<mode>ip|op|a[0-9])\s*(--\s*)?(?<pull>p[dhlnu])\s*\|\s*(?<value>hi|lo)\s+\/\/\s*(?<desc>[^\r\n]+)$/i';
+$REX_PINCTRL_GET = '/^\s*(?<pin>[0-9]{1,2}):\s*(?<mode>ip|op|a[0-9])(\s*(?<pull>p[dhlnu]|--)){1,2}\s*\|\s*(?<value>hi|lo)\s+\/\/\s*(?<desc>[^\r\n]+)$/i';
 
 $cmd = $_GET['cmd'];
 
